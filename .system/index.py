@@ -97,7 +97,8 @@ class index:
                 + cli.read(file)
                 + f"\n<!-- {section} - end -->\n"
             )
-            feeded = self.__renderFeeders(read)
+            cased = self.__renderFeedCases(read)
+            feeded = self.__renderFeeders(cased)
             html += self.__renderSection(feeded).strip()
             cli.trace(f"Rendered section: {page}({path})")
 
@@ -166,6 +167,41 @@ class index:
             )
 
         return self.__renderFeeders(content)
+
+    def __renderFeedCases(self, content: str):
+        matches = re.findall(r"\[\((.*?): (.*?)\)\]", content)
+        if not matches:
+            return content
+
+        for folder, case in matches:
+            path = f"{self.cwd}/{folder}"
+            if not cli.isFolder(path):
+                continue
+
+            files = os.listdir(path)
+            if not files:
+                continue
+
+            if "index.html" in files:
+                files.remove("index.html")
+
+            html = ""
+            if case == "first":
+                html = cli.read(path + "/" + files[0])
+            elif case == "count":
+                html = str(len(files))
+            elif case == "last":
+                html = cli.read(path + "/" + files[-1])
+
+            cli.trace(f"Rendering feed case: {folder}.{case}")
+            content = content.replace(
+                f"[({folder}: {case})]",
+                f"\n<!-- {folder} feed case {case} - start -->\n"
+                + html
+                + f"\n<!-- {folder} feed case {case} - end -->\n",
+            )
+
+        return self.__renderFeedCases(content)
 
     def __renderConfig(self, content: str):
         matches = re.findall(r"\{\{(.*?)\}\}", content)
