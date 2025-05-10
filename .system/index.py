@@ -149,18 +149,25 @@ class index:
             return content
 
         for item in matches:
+            rvs = "!" if item[0] == "!" else ""
+            if rvs:
+                item = item[1:]
+
             path = f"{self.cwd}/{item}"
             if not cli.isFolder(path):
                 continue
 
             html = ""
             cli.trace("Rendering feeder: " + item)
-            for file in os.listdir(path):
+            files = os.listdir(path)
+            if rvs:
+                files.reverse()
+            for file in files:
                 if file == "index.html":
                     continue
-                html += cli.read(f"{path}/{file}").replace("[[" + item + "]]", "")
+                html += cli.read(f"{path}/{file}").replace("[[" + rvs + item + "]]", "")
             content = content.replace(
-                "[[" + item + "]]",
+                "[[" + rvs + item + "]]",
                 f"\n<!-- {item} feeder - start -->\n"
                 + html
                 + f"\n<!-- {item} feeder - end -->\n",
@@ -169,7 +176,7 @@ class index:
         return self.__renderFeeders(content)
 
     def __renderFeedCases(self, content: str):
-        matches = re.findall(r"\[\((.*?): (.*?)\)\]", content)
+        matches = re.findall(r"\[\[(.*?): (.*?)\]\]", content)
         if not matches:
             return content
 
@@ -195,7 +202,7 @@ class index:
 
             cli.trace(f"Rendering feed case: {folder}.{case}")
             content = content.replace(
-                f"[({folder}: {case})]",
+                f"[[{folder}: {case}]]",
                 f"\n<!-- {folder} feed case {case} - start -->\n"
                 + html
                 + f"\n<!-- {folder} feed case {case} - end -->\n",

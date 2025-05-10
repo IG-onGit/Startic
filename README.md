@@ -1,7 +1,7 @@
-# Startic v1.1.0
+# Startic v1.1.1
 
 **Project**: Startic
-<br>**Version**: 1.1.0
+<br>**Version**: 1.1.1
 <br>**OS**: OS Independent
 <br>**Author**: Irakli Gzirishvili
 <br>**Mail**: gziraklirex@gmail.com
@@ -34,9 +34,9 @@ To use this framework, follow these rules:
 - To include a part in your code, use this format: `((folderName: partName))`
 - To include a configuration from the `assets` folder, use this format: `{{configName: keyName}}`
 - To include a collection from a folder, use this format: `[[folderName]]`
-- To include the first member of the collection, use this format: `[(folderName: first)]`
-- To include the last member of the collection, use this format: `[(folderName: last)]`
-- To get the count of collection members, use this format: `[(folderName: count)]`
+- To include the first member of the collection, use this format: `[[folderName: first]]`
+- To include the last member of the collection, use this format: `[[folderName: last]]`
+- To get the count of collection members, use this format: `[[folderName: count]]`
 
 ## Default System Variables
 
