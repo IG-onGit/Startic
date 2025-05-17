@@ -55,7 +55,7 @@ class index:
             time.sleep(2)
         pass
 
-    def render(self, cmd=""):  # Render project pages
+    def render(self, update="", cmd=""):  # Render project pages
         if not cli.isFile(self.config):
             return "Project does not exist!"
 
@@ -80,7 +80,8 @@ class index:
         parsed = self.__parseSystemVars(configured)
         cli.write(self.cwd + "/assets/sitemap.xml", parsed)
 
-        self.__open()
+        if update != "-u":
+            self.__open()
 
         return "Project rendered successfully"
 
