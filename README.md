@@ -1,7 +1,7 @@
-# Startic v1.1.4
+# Startic v1.1.5
 
 **Project**: Startic
-<br>**Version**: 1.1.4
+<br>**Version**: 1.1.5
 <br>**OS**: OS Independent
 <br>**Author**: Irakli Gzirishvili
 <br>**Mail**: gziraklirex@gmail.com
@@ -43,5 +43,3 @@ To use this framework, follow these rules:
 Here is a list of default system variables that you can use in your code:
 
 - `{{DATE}}` — UTC date string
-
----
