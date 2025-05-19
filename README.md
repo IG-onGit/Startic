@@ -1,7 +1,7 @@
-# Startic v1.1.3
+# Startic v1.1.4
 
 **Project**: Startic
-<br>**Version**: 1.1.3
+<br>**Version**: 1.1.4
 <br>**OS**: OS Independent
 <br>**Author**: Irakli Gzirishvili
 <br>**Mail**: gziraklirex@gmail.com

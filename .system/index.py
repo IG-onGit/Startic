@@ -188,12 +188,12 @@ class index:
                 continue
 
             files = os.listdir(path)
+            if "index.html" in files:
+                files.remove("index.html")
+
             if not files:
                 content = content.replace(f"[[{folder}: {case}]]", "")
                 continue
-
-            if "index.html" in files:
-                files.remove("index.html")
 
             html = ""
             if case == "first":
