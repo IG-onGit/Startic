@@ -43,3 +43,5 @@ To use this framework, follow these rules:
 Here is a list of default system variables that you can use in your code:
 
 - `{{DATE}}` — UTC date string
+
+---
