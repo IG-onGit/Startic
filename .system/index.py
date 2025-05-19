@@ -184,10 +184,12 @@ class index:
         for folder, case in matches:
             path = f"{self.cwd}/{folder}"
             if not cli.isFolder(path):
+                content = content.replace(f"[[{folder}: {case}]]", "")
                 continue
 
             files = os.listdir(path)
             if not files:
+                content = content.replace(f"[[{folder}: {case}]]", "")
                 continue
 
             if "index.html" in files:
